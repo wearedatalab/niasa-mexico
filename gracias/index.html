@@ -50,13 +50,12 @@
     document.getElementById("g-titulo").textContent = T[1];
     document.getElementById("g-texto").textContent = T[2];
   }
-  // Conversión: se dispara una sola vez por sesión
+  // Conversión: solo si se llega desde un envío real del formulario, una vez por envío
   try {
-    var k = "niasa_lead_" + f;
-    if (!sessionStorage.getItem(k)) {
+    if (T && sessionStorage.getItem("niasa_pendiente") === f) {
+      sessionStorage.removeItem("niasa_pendiente");
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: "generate_lead", form_origin: f });
-      sessionStorage.setItem(k, "1");
     }
   } catch (e) {}
 })();

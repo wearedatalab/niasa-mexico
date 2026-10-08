@@ -15,8 +15,10 @@
     var y = window.scrollY;
     header.classList.toggle("is-solid", y > 40);
     var menuOpen = $("#movil").classList.contains("is-open");
-    header.classList.toggle("is-hidden", !menuOpen && y > 700 && y > lastY + 4);
-    if (y < lastY - 4 || y < 700) header.classList.remove("is-hidden");
+    var dy = y - lastY;
+    if (menuOpen || y < 700) header.classList.remove("is-hidden");
+    else if (dy > 4) header.classList.add("is-hidden");
+    else if (dy < -4) header.classList.remove("is-hidden");
     if (wa) wa.classList.toggle("is-on", y > window.innerHeight * 0.75);
     lastY = y;
   }
@@ -30,10 +32,30 @@
     movil.hidden = !open;
     movil.classList.toggle("is-open", open);
     document.body.style.overflow = open ? "hidden" : "";
-    if (open) header.classList.add("is-solid"); else onScrollHeader();
+    // el resto de la página queda fuera del foco mientras el menú está abierto
+    [$("#contenido"), $(".footer"), wa].forEach(function (n) { if (n) n.inert = open; });
+    if (open) { header.classList.add("is-solid"); var first = $("input, a", movil); if (first) first.focus(); }
+    else onScrollHeader();
   }
   burger.addEventListener("click", function () { setMovil(burger.getAttribute("aria-expanded") !== "true"); });
   $$("a", movil).forEach(function (a) { a.addEventListener("click", function () { setMovil(false); }); });
+  var mqEscritorio = window.matchMedia("(min-width:1101px)");
+  function alEscritorio(e) { if (e.matches && movil.classList.contains("is-open")) setMovil(false); }
+  if (mqEscritorio.addEventListener) mqEscritorio.addEventListener("change", alEscritorio);
+
+  /* ---------- Búsqueda ---------- */
+  var buscar = $(".buscar");
+  if (buscar) {
+    var bBtn = $(".header__buscar", buscar), bPop = $("#buscar-pop");
+    var setBuscar = function (open) {
+      bPop.hidden = !open;
+      bBtn.setAttribute("aria-expanded", String(open));
+      if (open) $("input", bPop).focus();
+    };
+    bBtn.addEventListener("click", function (e) { e.stopPropagation(); setBuscar(bPop.hidden); });
+    document.addEventListener("click", function (e) { if (!buscar.contains(e.target)) setBuscar(false); });
+    buscar.addEventListener("keydown", function (e) { if (e.key === "Escape" && !bPop.hidden) { setBuscar(false); bBtn.focus(); } });
+  }
 
   /* ---------- Desplegable Herramientas ---------- */
   var drop = $(".nav__drop");
@@ -46,6 +68,7 @@
   drop.addEventListener("mouseenter", function () { if (window.matchMedia("(hover:hover)").matches) setDrop(true); });
   drop.addEventListener("mouseleave", function () { if (window.matchMedia("(hover:hover)").matches) setDrop(false); });
   document.addEventListener("click", function (e) { if (!drop.contains(e.target)) setDrop(false); });
+  drop.addEventListener("focusout", function (e) { if (!drop.contains(e.relatedTarget)) setDrop(false); });
   document.addEventListener("keydown", function (e) {
     if (e.key !== "Escape") return;
     if (drop.hasAttribute("data-open")) { setDrop(false); dropBtn.focus(); }
@@ -58,8 +81,10 @@
     var btn = $(".estrato__cab", li);
     li.classList.toggle("is-open", open);
     btn.setAttribute("aria-expanded", String(open));
+    $(".estrato__panel", li).inert = !open;   // capas cerradas fuera del orden de tabulación
   }
   estratos.forEach(function (li) {
+    setCapa(li, false);
     $(".estrato__cab", li).addEventListener("click", function () {
       var open = !li.classList.contains("is-open");
       estratos.forEach(function (o) { if (o !== li) setCapa(o, false); });
@@ -72,9 +97,15 @@
     b.addEventListener("click", function () {
       var li = document.getElementById("capa-" + b.getAttribute("data-capa"));
       if (!li) return;
+      // descuenta los paneles abiertos por encima que se van a cerrar
+      var shift = 0;
+      estratos.forEach(function (o) {
+        if (o !== li && o.classList.contains("is-open") && (o.compareDocumentPosition(li) & Node.DOCUMENT_POSITION_FOLLOWING))
+          shift += $(".estrato__panel", o).offsetHeight;
+      });
       estratos.forEach(function (o) { setCapa(o, o === li); });
       li.classList.add("is-in");
-      var top = li.getBoundingClientRect().top + window.scrollY - (header.offsetHeight + 8);
+      var top = li.getBoundingClientRect().top + window.scrollY - shift - (header.offsetHeight + 8);
       window.scrollTo({ top: top, behavior: reduce ? "auto" : "smooth" });
       li.classList.remove("is-flash"); void li.offsetWidth; li.classList.add("is-flash");
       setTimeout(function () { $(".estrato__cab", li).focus({ preventScroll: true }); }, reduce ? 0 : 700);
@@ -84,10 +115,10 @@
   /* ---------- A.Plana: 4 capas que se vuelven una ---------- */
   var pista = $(".aplana__pista");
   var capas4 = $(".capas4");
-  var wide = window.matchMedia("(min-width:961px)");
+  var wide = window.matchMedia("(min-width:961px) and (min-height:821px)");   // modo fijo solo si cabe
   function onScrollAplana() {
     if (!capas4) return;
-    if (reduce) { capas4.style.setProperty("--p", 1); return; }
+    if (reduce) { capas4.style.setProperty("--p", 0); return; }
     var vh = window.innerHeight, p;
     if (wide.matches) {
       var r = pista.getBoundingClientRect();
@@ -111,7 +142,7 @@
     if (cm2 < 8100) return 2;
     return 1.4;
   }
-  function fmt(n) { return String(n).replace(".", ","); }
+  function fmt(n) { return n.toLocaleString("es-MX", { maximumFractionDigits: 2 }); }
   function calcular() {
     var L = parseFloat(cL.value), A = parseFloat(cA.value), M = parseFloat(cM.value);
     var ok = L > 0 && A > 0 && M > 0;
@@ -126,12 +157,61 @@
     var s = Math.ceil(M / y);
     $("#c-sacos").textContent = s;
     $("#c-unidad").textContent = s === 1 ? "saco de 20 kg" : "sacos de 20 kg";
-    $("#c-nota").textContent = "Para piezas de " + fmt(L) + " × " + fmt(A) + " cm se estima un rendimiento de " + fmt(y) + " m² por saco.";
+    $("#c-nota").textContent = "Cálculo para piezas de " + fmt(L) + " × " + fmt(A) + " cm con la fórmula de la calculadora Niasa.";
   }
   if (cL) {
     [cL, cA, cM].forEach(function (i) { i.addEventListener("input", calcular); });
     $("#calc").addEventListener("submit", function (e) { e.preventDefault(); calcular(); });
     calcular();
+  }
+
+  /* ---------- Buscador de distribuidores ----------
+     El mapa real (JetSmartFilters) acepta ?jsf=jet-engine-maps&tax=ubicacion:<ID>.
+     Su búsqueda por CP es exacta, así que el CP se traduce a estado con los rangos de SEPOMEX. */
+  var fd = $("#form-distrib");
+  if (fd) {
+    var dCp = $("#d-cp"), dEdo = $("#d-estado"), dMsg = $("#d-msg");
+    var WA = "https://wa.me/5215519951277?text=Hola%20Niasa%2C%20busco%20un%20distribuidor%20cerca%20de%20mi%20obra";
+    var RANGOS = [[1,16,"Ciudad de México","295"],[20,20,"Aguascalientes","258"],[21,22,"Baja California","176"],[23,23,"Baja California Sur","324"],
+      [24,24,"Campeche",""],[25,27,"Coahuila","322"],[28,28,"Colima","207"],[29,30,"Chiapas","287"],[31,33,"Chihuahua","184"],[34,35,"Durango","196"],
+      [36,38,"Guanajuato",""],[39,41,"Guerrero",""],[42,43,"Hidalgo","326"],[44,49,"Jalisco","212"],[50,57,"Estado de México","299"],
+      [58,61,"Michoacán","249"],[62,62,"Morelos","312"],[63,63,"Nayarit","209"],[64,67,"Nuevo León","205"],[68,71,"Oaxaca","273"],
+      [72,75,"Puebla","303"],[76,76,"Querétaro","323"],[77,77,"Quintana Roo",""],[78,79,"San Luis Potosí","327"],[80,82,"Sinaloa","259"],
+      [83,85,"Sonora","174"],[86,86,"Tabasco","283"],[87,89,"Tamaulipas",""],[90,90,"Tlaxcala","325"],[91,96,"Veracruz","280"],
+      [97,97,"Yucatán",""],[98,99,"Zacatecas","217"]];
+    var sinRed = null;
+    var msg = function (html, error) { dMsg.innerHTML = html; dMsg.classList.toggle("is-error", !!error); };
+    var estadoDeCp = function (cp) {
+      var n = parseInt(cp.slice(0, 2), 10);
+      for (var i = 0; i < RANGOS.length; i++) if (n >= RANGOS[i][0] && n <= RANGOS[i][1]) return RANGOS[i];
+      return null;
+    };
+    dCp.addEventListener("input", function () {
+      dCp.value = dCp.value.replace(/\D/g, "").slice(0, 5);
+      sinRed = null;
+      if (dCp.value.length < 5) { if (!dCp.value) msg(""); return; }
+      var e = estadoDeCp(dCp.value);
+      if (!e) { msg("Revisa el código postal: no corresponde a ningún estado.", true); return; }
+      if (e[3]) {
+        dEdo.value = "ubicacion:" + e[3];
+        msg("Código postal de " + e[2] + ". Te mostraremos los distribuidores del estado.");
+      } else {
+        dEdo.value = "";
+        sinRed = e[2];
+        msg("Aún no hay distribuidores de " + e[2] + " en el mapa. <a href=\"" + WA + "\" target=\"_blank\" rel=\"noopener\">Escríbenos por WhatsApp</a> y te ubicamos el más cercano.");
+      }
+    });
+    dEdo.addEventListener("change", function () { if (dEdo.value) { sinRed = null; msg(""); } });
+    fd.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (dEdo.value) {
+        window.location.href = "https://niasa.com.mx/distribuidores-niasa/?jsf=jet-engine-maps&tax=" + dEdo.value;
+        return;
+      }
+      if (sinRed) { var a = $("a", dMsg); if (a) a.focus(); return; }
+      msg("Escribe tu código postal o elige tu estado.", true);
+      dCp.focus();
+    });
   }
 
   /* ---------- Mapa de plantas (matriz de puntos) ---------- */
@@ -192,7 +272,7 @@
     // corporativo CDMX
     var c = px(19.43, -99.13), gc = el("g", { class: "cdmx" });
     el("rect", { x: c[0] - 3.5, y: c[1] - 3.5, width: 7, height: 7 }, gc);
-    el("text", { x: c[0] + 12, y: c[1] + 16 }, gc).textContent = "CDMX · CORPORATIVO";
+    el("text", { x: c[0] - 12, y: c[1] + 20, "text-anchor": "end" }, gc).textContent = "CDMX · CORPORATIVO";
     // plantas y bodegas
     SITIOS.forEach(function (s) {
       var p = px(s.lat, s.lon);
@@ -261,7 +341,11 @@
   $$("[data-abre]").forEach(function (b) {
     b.addEventListener("click", function () {
       var d = document.getElementById(b.getAttribute("data-abre"));
-      if (d && d.showModal) { d.showModal(); var f = $("input", d); if (f) f.focus(); }
+      if (!d || !d.showModal) return;
+      var sol = b.getAttribute("data-solucion"), sel = $("[name=solucion]", d);
+      if (sol && sel) sel.value = sol;
+      d.showModal();
+      var f = $("input", d); if (f) f.focus();
     });
   });
   $$("dialog").forEach(function (d) {
@@ -271,17 +355,36 @@
 
   /* ---------- Formularios → página de gracias ---------- */
   var reEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  function nombreCampo(i) {
+    var l = i.closest("label");
+    if (!l) return i.name;
+    var t = "";
+    l.childNodes.forEach(function (n) { if (n.nodeType === 3) t += n.textContent; });
+    return t.replace(/\s+/g, " ").trim() || i.name;
+  }
   function valida(form, errEl) {
-    var malo = null;
+    var malos = [], correoMal = false, sinAviso = false;
     $$("[required]", form).forEach(function (i) {
-      var bad = i.type === "checkbox" ? !i.checked : (!i.value.trim() || (i.type === "email" && !reEmail.test(i.value.trim())));
+      var v = i.value.trim();
+      var bad = i.type === "checkbox" ? !i.checked : (!v || (i.type === "email" && !reEmail.test(v)));
       i.setAttribute("aria-invalid", String(bad));
-      if (bad && !malo) malo = i;
+      if (bad) {
+        i.setAttribute("aria-describedby", errEl.id);
+        malos.push(i);
+        if (i.type === "checkbox") sinAviso = true;
+        else if (i.type === "email" && v) correoMal = true;
+      } else if (i.getAttribute("aria-describedby") === errEl.id) {
+        i.removeAttribute("aria-describedby");
+      }
     });
-    if (malo) {
-      errEl.textContent = malo.type === "checkbox" ? "Acepta el aviso de privacidad para continuar." :
-        (malo.type === "email" && malo.value ? "Revisa tu correo electrónico." : "Completa los campos marcados.");
-      malo.focus();
+    if (malos.length) {
+      var faltan = malos.filter(function (i) { return i.type !== "checkbox" && !(i.type === "email" && i.value.trim()); }).map(nombreCampo);
+      var partes = [];
+      if (faltan.length) { var lista = "Faltan: " + faltan.join(", "); partes.push(/[.?!]$/.test(lista) ? lista : lista + "."); }
+      if (correoMal) partes.push("Revisa tu correo electrónico.");
+      if (sinAviso) partes.push("Acepta el aviso de privacidad para continuar.");
+      errEl.textContent = partes.join(" ");
+      malos[0].focus();
       return false;
     }
     errEl.textContent = "";
@@ -294,10 +397,13 @@
       e.preventDefault();
       if (!valida(f, document.getElementById(errId))) return;
       // Prototipo: aquí se conectaría el envío real (CRM / Elementor Forms).
+      try { sessionStorage.setItem("niasa_pendiente", origen); } catch (err) {}
       window.location.href = "gracias/?f=" + origen;
     });
     $$("[required]", f).forEach(function (i) {
-      i.addEventListener("input", function () { if (i.getAttribute("aria-invalid") === "true") i.setAttribute("aria-invalid", "false"); });
+      var limpia = function () { if (i.getAttribute("aria-invalid") === "true") i.setAttribute("aria-invalid", "false"); };
+      i.addEventListener("input", limpia);
+      i.addEventListener("change", limpia);
     });
   }
   envia("form-contacto", "f-error", "contacto");

@@ -12,10 +12,11 @@
 <meta property="og:site_name" content="Niasa México">
 <meta property="og:title" content="Niasa México · Entre tú y tu obra">
 <meta property="og:description" content="Adhesivos, boquillas, acabados, impermeabilizantes y morteros especializados. Más de 40 productos y más de 500 distribuidores en México.">
-<meta property="og:url" content="https://niasa.com.mx/">
+<meta property="og:url" content="https://wearedatalab.github.io/niasa-mexico/">
 <meta property="og:image" content="https://wearedatalab.github.io/niasa-mexico/img/og-niasa.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Niasa México · Entre tú y tu obra">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,7 +36,7 @@
       "alternateName":"Niasa",
       "slogan":"Entre tú y tu obra",
       "url":"https://niasa.com.mx/",
-      "logo":"https://niasa.com.mx/wp-content/uploads/2023/01/logo-niasa-principal-white-e1674158984198.png",
+      "logo":"https://niasa.com.mx/wp-content/uploads/2022/02/cropped-favicon-Niasa-M%C3%A9xico-270x270.png",
       "description":"Fabricante mexicano de adhesivos, boquillas, acabados, impermeabilizantes, aditivos, selladores y morteros especializados para obra y remodelación.",
       "email":"mercadotecnia@niasa.com.mx",
       "telephone":"+52-55-5354-5680",
@@ -98,16 +99,29 @@
       <a href="https://niasa.com.mx/blog/">Blog</a>
       <a href="#contacto">Contacto</a>
     </nav>
-    <a class="header__buscar" href="https://niasa.com.mx/?s=" aria-label="Buscar en el sitio"><svg aria-hidden="true"><use href="#i-buscar"/></svg></a>
+    <div class="buscar">
+      <button class="header__buscar" type="button" aria-expanded="false" aria-controls="buscar-pop" aria-label="Buscar productos"><svg aria-hidden="true"><use href="#i-buscar"/></svg></button>
+      <form class="buscar__pop" id="buscar-pop" role="search" action="https://niasa.com.mx/" method="get" hidden>
+        <label class="sr-only" for="q">Buscar producto</label>
+        <input class="campo" id="q" type="search" name="s" placeholder="Busca un producto, p. ej. Pegavitro" required>
+        <button class="btn btn--azul" type="submit">Buscar</button>
+      </form>
+    </div>
     <a class="btn btn--blanco header__cta" href="#distribuidores">Encuentra un distribuidor</a>
     <button class="burger" type="button" aria-expanded="false" aria-controls="movil" aria-label="Abrir menú"><span></span></button>
   </div>
 </header>
-<div class="movil" id="movil" hidden>
+<nav class="movil" id="movil" aria-label="Menú principal" hidden>
+  <form class="movil__buscar" role="search" action="https://niasa.com.mx/" method="get">
+    <label class="sr-only" for="q-m">Buscar producto</label>
+    <input class="campo" id="q-m" type="search" name="s" placeholder="Busca un producto, p. ej. Pegavitro" required>
+    <button class="btn btn--azul" type="submit" aria-label="Buscar"><svg aria-hidden="true"><use href="#i-buscar"/></svg></button>
+  </form>
   <a href="https://niasa.com.mx/productos/">Productos</a>
   <a href="https://niasa.com.mx/distribuidores-niasa/">Distribuidores</a>
   <a href="https://niasa.com.mx/innovaciones/">Innovaciones</a>
-  <div class="movil__sub">
+  <p class="movil__tit mono" id="movil-herr">Herramientas</p>
+  <div class="movil__sub" role="group" aria-labelledby="movil-herr">
     <a href="https://niasa.com.mx/calculadora-de-adhesivos/">Calculadora de adhesivos</a>
     <a href="https://niasa.com.mx/herramientas-sugeridas/">Herramientas sugeridas</a>
     <a href="https://niasa.com.mx/preguntas-frecuentes/">Preguntas frecuentes</a>
@@ -115,9 +129,14 @@
   <a href="https://niasa.com.mx/empresa-niasa/">Empresa</a>
   <a href="https://niasa.com.mx/cen/">CEN</a>
   <a href="https://niasa.com.mx/blog/">Blog</a>
+  <a href="#profesionales">Arquitectos y contratistas</a>
   <a href="#contacto">Contacto</a>
   <a class="btn btn--blanco" href="#distribuidores">Encuentra un distribuidor</a>
-</div>
+  <div class="movil__contacto">
+    <a href="https://wa.me/5215519951277?text=Hola%20Niasa%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20productos" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg> WhatsApp</a>
+    <a href="tel:+528005064272"><svg aria-hidden="true"><use href="#i-tel"/></svg> 800 5064 272</a>
+  </div>
+</nav>
 
 <main id="contenido">
 
@@ -126,7 +145,7 @@
   <div class="hero__media">
     <picture>
       <source media="(max-width:700px)" srcset="img/w/hero-m.webp" width="900" height="1098">
-      <img src="img/w/hero.webp" srcset="img/w/hero-1200.webp 1200w, img/w/hero.webp 2400w" sizes="100vw" width="2400" height="1029" alt="Instalador extendiendo adhesivo con llana dentada sobre un firme de concreto" fetchpriority="high">
+      <img src="img/w/hero.webp" srcset="img/w/hero-1200.webp 1200w, img/w/hero.webp 2400w" sizes="100vw" width="2400" height="1029" alt="Instalador peinando adhesivo para loseta con llana sobre un firme de concreto" fetchpriority="high">
     </picture>
   </div>
   <div class="hero__in">
@@ -137,6 +156,7 @@
       <a class="btn btn--blanco" href="#lineas">Conoce nuestros productos <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
       <a class="btn btn--linea" href="#distribuidores">Encuentra un distribuidor</a>
     </div>
+    <p class="hero__pro">¿Eres arquitecto o contratista? <button type="button" data-abre="dlg-muestra">Pide una muestra en tu obra</button></p>
   </div>
   <div class="tareas">
     <div class="tareas__in">
@@ -159,19 +179,19 @@
     <div class="sec__cab">
       <p class="mono">Líneas de producto · Corte A–A′, de la azotea al firme</p>
       <h2 id="lineas-t">Tu obra,<br>capa por capa.</h2>
-      <p>Diez líneas que trabajan juntas, del impermeabilizante del techo al aditivo de la mezcla. Abre cada capa para ver sus productos.</p>
+      <p>Diez líneas que trabajan juntas, del impermeabilizante de la azotea a las especialidades para concreto y el sellado profesional. Abre cada capa para ver sus productos.</p>
     </div>
   </div>
 
   <ol class="estratos">
     <li class="estrato" id="capa-impermeabilizantes" style="--tono:#3fa9f5">
-      <div class="estrato__tex"><img src="img/w/t-imper.webp" alt="" loading="lazy" width="1440" height="617"></div>
-      <button class="estrato__cab" type="button" aria-expanded="false" aria-controls="p-imper">
+      <div class="estrato__tex"><img src="img/w/t-imper.webp" srcset="img/w/t-imper-720.webp 720w, img/w/t-imper.webp 1440w" sizes="100vw" alt="" loading="lazy" width="1440" height="617"></div>
+      <h3 class="estrato__h"><button class="estrato__cab" type="button" aria-expanded="false" aria-controls="p-imper">
         <span class="estrato__num">01</span>
         <span class="estrato__nombre">Impermeabilizantes</span>
         <span class="estrato__donde">Techos, azoteas y muros</span>
         <span class="estrato__mas" aria-hidden="true"><svg><use href="#i-mas"/></svg></span>
-      </button>
+      </button></h3>
       <div class="estrato__panel" id="p-imper"><div>
         <div class="estrato__cuerpo">
           <div class="estrato__texto">
@@ -179,25 +199,25 @@
             <a class="enlace" href="https://niasa.com.mx/impermeabilizantes/">Ver impermeabilizantes <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
           </div>
           <ul class="estrato__prods">
-            <li>Impertech® Plus · 10 años</li><li>Impertech® 5 años</li><li>Impertech® Fibratado</li><li>Impertech® Obra</li><li>Impertech® Cemento Reparador Plástico</li><li>Niasa® Last IG-C</li><li>Bluefence®</li>
+            <li><a href="https://niasa.com.mx/productos/impertech-plus/">Impertech® Plus · 10 años</a></li><li><a href="https://niasa.com.mx/productos/impertech/">Impertech® 5 años</a></li><li><a href="https://niasa.com.mx/productos/impertech-fibratado/">Impertech® Fibratado</a></li><li><a href="https://niasa.com.mx/productos/impertech-obra/">Impertech® Obra</a></li><li><a href="https://niasa.com.mx/productos/impertech-cemento-reparador-plastico/">Impertech® Cemento Reparador Plástico</a></li><li><a href="https://niasa.com.mx/productos/last-icg/">Niasa® Last IG-C</a></li><li><a href="https://niasa.com.mx/productos/bluefence/">Bluefence®</a></li>
           </ul>
           <div class="estrato__packs">
-            <img src="img/prod/impertech-plus.webp" alt="Cubeta de Impertech Plus" loading="lazy" width="248" height="360">
-            <img src="img/prod/impertech-5.webp" alt="Cubeta de Impertech 5 años" loading="lazy" width="248" height="360">
-            <img src="img/prod/impertech-fibratado.webp" alt="Cubeta de Impertech Fibratado" loading="lazy" width="248" height="360">
+            <a href="https://niasa.com.mx/productos/impertech-plus/"><img src="img/prod/impertech-plus.webp" alt="Cubeta de Impertech Plus" loading="lazy" width="248" height="360"></a>
+            <a href="https://niasa.com.mx/productos/impertech/"><img src="img/prod/impertech-5.webp" alt="Cubeta de Impertech 5 años" loading="lazy" width="248" height="360"></a>
+            <a href="https://niasa.com.mx/productos/impertech-fibratado/"><img src="img/prod/impertech-fibratado.webp" alt="Cubeta de Impertech Fibratado" loading="lazy" width="248" height="360"></a>
           </div>
         </div>
       </div></div>
     </li>
 
     <li class="estrato" id="capa-selladores" style="--tono:#2fbf7a">
-      <div class="estrato__tex"><img src="img/w/t-sellador.webp" alt="" loading="lazy" width="1440" height="617"></div>
-      <button class="estrato__cab" type="button" aria-expanded="false" aria-controls="p-sella">
+      <div class="estrato__tex"><img src="img/w/t-sellador.webp" srcset="img/w/t-sellador-720.webp 720w, img/w/t-sellador.webp 1440w" sizes="100vw" alt="" loading="lazy" width="1440" height="617"></div>
+      <h3 class="estrato__h"><button class="estrato__cab" type="button" aria-expanded="false" aria-controls="p-sella">
         <span class="estrato__num">02</span>
         <span class="estrato__nombre">Selladores</span>
         <span class="estrato__donde">Juntas, muros y piedra natural</span>
         <span class="estrato__mas" aria-hidden="true"><svg><use href="#i-mas"/></svg></span>
-      </button>
+      </button></h3>
       <div class="estrato__panel" id="p-sella"><div>
         <div class="estrato__cuerpo">
           <div class="estrato__texto">
@@ -205,25 +225,25 @@
             <a class="enlace" href="https://niasa.com.mx/selladores/">Ver selladores <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
           </div>
           <ul class="estrato__prods">
-            <li>Sellatech®</li><li>Sellador Profesional para Boquilla</li><li>Sellador Base Solvente</li>
+            <li><a href="https://niasa.com.mx/productos/sellatech/">Sellatech®</a></li><li><a href="https://niasa.com.mx/productos/sellador-profesional-para-boquilla/">Sellador Profesional para Boquilla</a></li><li><a href="https://niasa.com.mx/productos/sellador-base-solvente/">Sellador Base Solvente</a></li>
           </ul>
           <div class="estrato__packs">
-            <img src="img/prod/sellatech.webp" alt="Envase de Sellatech" loading="lazy" width="250" height="360">
-            <img src="img/prod/sellador-boquilla.webp" alt="Envase de Sellador Profesional para Boquilla" loading="lazy" width="251" height="360">
-            <img src="img/prod/sellador-base-solvente.webp" alt="Envase de Sellador Base Solvente" loading="lazy" width="250" height="360">
+            <a href="https://niasa.com.mx/productos/sellatech/"><img src="img/prod/sellatech.webp" alt="Envase de Sellatech" loading="lazy" width="250" height="360"></a>
+            <a href="https://niasa.com.mx/productos/sellador-profesional-para-boquilla/"><img src="img/prod/sellador-boquilla.webp" alt="Envase de Sellador Profesional para Boquilla" loading="lazy" width="251" height="360"></a>
+            <a href="https://niasa.com.mx/productos/sellador-base-solvente/"><img src="img/prod/sellador-base-solvente.webp" alt="Envase de Sellador Base Solvente" loading="lazy" width="250" height="360"></a>
           </div>
         </div>
       </div></div>
     </li>
 
     <li class="estrato" id="capa-acabados" style="--tono:#f07a2b">
-      <div class="estrato__tex"><img src="img/w/t-acabados.webp" alt="" loading="lazy" width="1440" height="617"></div>
-      <button class="estrato__cab" type="button" aria-expanded="false" aria-controls="p-acab">
+      <div class="estrato__tex"><img src="img/w/t-acabados.webp" srcset="img/w/t-acabados-720.webp 720w, img/w/t-acabados.webp 1440w" sizes="100vw" alt="" loading="lazy" width="1440" height="617"></div>
+      <h3 class="estrato__h"><button class="estrato__cab" type="button" aria-expanded="false" aria-controls="p-acab">
         <span class="estrato__num">03</span>
         <span class="estrato__nombre">Acabados</span>
         <span class="estrato__donde">Muros, techos y bardas</span>
         <span class="estrato__mas" aria-hidden="true"><svg><use href="#i-mas"/></svg></span>
-      </button>
+      </button></h3>
       <div class="estrato__panel" id="p-acab"><div>
         <div class="estrato__cuerpo">
           <div class="estrato__texto">
@@ -231,25 +251,25 @@
             <a class="enlace" href="https://niasa.com.mx/estucos/">Ver acabados <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
           </div>
           <ul class="estrato__prods">
-            <li>Recubritech® Extra Fino</li><li>Recubritech® Fino</li><li>Recubritech® Grueso</li><li>Recubritech® Extra Grueso</li><li>Recubritech® Ultra Liso</li><li>Recubritech® A.Plana</li><li>OxiMuro®</li><li>Kretbond®</li><li>Pegaestireno</li>
+            <li><a href="https://niasa.com.mx/productos/recubritech-extra-fino/">Recubritech® Extra Fino</a></li><li><a href="https://niasa.com.mx/productos/econotex-recubritech-fino/">Recubritech® Fino</a></li><li><a href="https://niasa.com.mx/productos/econotex-recubritech-grueso/">Recubritech® Grueso</a></li><li><a href="https://niasa.com.mx/productos/econotex-recubritech-extra-grueso/">Recubritech® Extra Grueso</a></li><li><a href="https://niasa.com.mx/productos/recubritech-ultra-liso/">Recubritech® Ultra Liso</a></li><li><a href="https://niasa.com.mx/productos/estuco-para-aplanar/">Recubritech® A.Plana</a></li><li><a href="https://niasa.com.mx/productos/oximuro/">OxiMuro®</a></li><li><a href="https://niasa.com.mx/productos/kretbond/">Kretbond®</a></li><li><a href="https://niasa.com.mx/productos/pegaestireno/">Pegaestireno</a></li>
           </ul>
           <div class="estrato__packs">
-            <img src="img/prod/recubritech-extrafino.webp" alt="Saco de Recubritech Extra Fino" loading="lazy" width="250" height="360">
-            <img src="img/prod/recubritech-fino.webp" alt="Saco de Recubritech Fino" loading="lazy" width="245" height="360">
-            <img src="img/prod/oximuro.webp" alt="Saco de OxiMuro" loading="lazy" width="234" height="360">
+            <a href="https://niasa.com.mx/productos/recubritech-extra-fino/"><img src="img/prod/recubritech-extrafino.webp" alt="Saco de Recubritech Extra Fino" loading="lazy" width="250" height="360"></a>
+            <a href="https://niasa.com.mx/productos/econotex-recubritech-fino/"><img src="img/prod/recubritech-fino.webp" alt="Saco de Recubritech Fino" loading="lazy" width="245" height="360"></a>
+            <a href="https://niasa.com.mx/productos/oximuro/"><img src="img/prod/oximuro.webp" alt="Saco de OxiMuro" loading="lazy" width="234" height="360"></a>
           </div>
         </div>
       </div></div>
     </li>
 
     <li class="estrato" id="capa-boquilla" style="--tono:#7fd3df">
-      <div class="estrato__tex"><img src="img/w/t-boquilla.webp" alt="" loading="lazy" width="1440" height="617"></div>
-      <button class="estrato__cab" type="button" aria-expanded="false" aria-controls="p-boqu">
+      <div class="estrato__tex"><img src="img/w/t-boquilla.webp" srcset="img/w/t-boquilla-720.webp 720w, img/w/t-boquilla.webp 1440w" sizes="100vw" alt="" loading="lazy" width="1440" height="617"></div>
+      <h3 class="estrato__h"><button class="estrato__cab" type="button" aria-expanded="false" aria-controls="p-boqu">
         <span class="estrato__num">04</span>
         <span class="estrato__nombre">Boquilla</span>
         <span class="estrato__donde">Juntas de pisos y muros</span>
         <span class="estrato__mas" aria-hidden="true"><svg><use href="#i-mas"/></svg></span>
-      </button>
+      </button></h3>
       <div class="estrato__panel" id="p-boqu"><div>
         <div class="estrato__cuerpo">
           <div class="estrato__texto">
@@ -257,24 +277,24 @@
             <a class="enlace" href="https://niasa.com.mx/emboquilladores/">Ver boquillas <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
           </div>
           <ul class="estrato__prods">
-            <li>UltraGrout Boquichamp®</li><li>Boquichamp® Ultrafino</li><li>Boquichamp® Fluido y Sellado</li><li>Boquipoxy®</li>
+            <li><a href="https://niasa.com.mx/productos/ultragrout-boquichamp/">UltraGrout Boquichamp®</a></li><li><a href="https://niasa.com.mx/productos/boquichamp-ultrafino-porcelanico/">Boquichamp® Ultrafino</a></li><li><a href="https://niasa.com.mx/productos/boquichamp-fluido-y-sellado/">Boquichamp® Fluido y Sellado</a></li><li><a href="https://niasa.com.mx/productos/boquipoxy/">Boquipoxy®</a></li>
           </ul>
           <div class="estrato__packs">
-            <img src="img/prod/ultragrout-boquichamp.webp" alt="Empaques de UltraGrout Boquichamp" loading="lazy" width="489" height="360">
-            <img src="img/prod/boquipoxy.webp" alt="Cubeta de Boquipoxy" loading="lazy" width="248" height="360">
+            <a href="https://niasa.com.mx/productos/ultragrout-boquichamp/"><img src="img/prod/ultragrout-boquichamp.webp" alt="Empaques de UltraGrout Boquichamp" loading="lazy" width="489" height="360"></a>
+            <a href="https://niasa.com.mx/productos/boquipoxy/"><img src="img/prod/boquipoxy.webp" alt="Cubeta de Boquipoxy" loading="lazy" width="248" height="360"></a>
           </div>
         </div>
       </div></div>
     </li>
 
     <li class="estrato" id="capa-adhesivos" style="--tono:#8bd14a">
-      <div class="estrato__tex"><img src="img/w/t-adhesivo.webp" alt="" loading="lazy" width="1440" height="617"></div>
-      <button class="estrato__cab" type="button" aria-expanded="false" aria-controls="p-adhe">
+      <div class="estrato__tex"><img src="img/w/t-adhesivo.webp" srcset="img/w/t-adhesivo-720.webp 720w, img/w/t-adhesivo.webp 1440w" sizes="100vw" alt="" loading="lazy" width="1440" height="617"></div>
+      <h3 class="estrato__h"><button class="estrato__cab" type="button" aria-expanded="false" aria-controls="p-adhe">
         <span class="estrato__num">05</span>
         <span class="estrato__nombre">Adhesivos</span>
         <span class="estrato__donde">Pisos, muros y piso sobre piso</span>
         <span class="estrato__mas" aria-hidden="true"><svg><use href="#i-mas"/></svg></span>
-      </button>
+      </button></h3>
       <div class="estrato__panel" id="p-adhe"><div>
         <div class="estrato__cuerpo">
           <div class="estrato__texto">
@@ -282,25 +302,25 @@
             <a class="enlace" href="https://niasa.com.mx/adhesivos/">Ver adhesivos <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
           </div>
           <ul class="estrato__prods">
-            <li>Pegavitro®</li><li>Pegazulejo</li><li>Polimor®</li><li>Fijaporcelánicos® y Porcelanatos</li><li>GrisPRO Rápido</li><li>Pegamármol®</li><li>Fijapiso®</li><li>FijaTeja®</li><li>Adhesivo para Albercas</li><li>Ceramic Right Mortar</li><li>Mortarbond® Tile</li>
+            <li><a href="https://niasa.com.mx/productos/pega-piso-sobre-piso/">Pegavitro®</a></li><li><a href="https://niasa.com.mx/productos/adhesivo-pegazulejo/">Pegazulejo</a></li><li><a href="https://niasa.com.mx/productos/polimor/">Polimor®</a></li><li><a href="https://niasa.com.mx/productos/fijaporcelanicos-y-porcelanatos/">Fijaporcelánicos® y Porcelanatos</a></li><li><a href="https://niasa.com.mx/productos/grispro-rapido/">GrisPRO Rápido</a></li><li><a href="https://niasa.com.mx/productos/adhesivo-marmol/">Pegamármol®</a></li><li><a href="https://niasa.com.mx/productos/fijapiso/">Fijapiso®</a></li><li><a href="https://niasa.com.mx/productos/fijateja/">FijaTeja®</a></li><li><a href="https://niasa.com.mx/productos/adhesivo-para-albercas/">Adhesivo para Albercas</a></li><li><a href="https://niasa.com.mx/productos/ceramicright-mortar/">Ceramic Right Mortar</a></li><li><a href="https://niasa.com.mx/productos/mortarbond-tile/">Mortarbond® Tile</a></li>
           </ul>
           <div class="estrato__packs">
-            <img src="img/prod/pegavitro.webp" alt="Saco de Pegavitro" loading="lazy" width="257" height="360">
-            <img src="img/prod/pegazulejo.webp" alt="Saco de Pegazulejo" loading="lazy" width="253" height="360">
-            <img src="img/prod/fijaporcelanicos.webp" alt="Saco de Fijaporcelánicos y Porcelanatos" loading="lazy" width="249" height="360">
+            <a href="https://niasa.com.mx/productos/pega-piso-sobre-piso/"><img src="img/prod/pegavitro.webp" alt="Saco de Pegavitro" loading="lazy" width="257" height="360"></a>
+            <a href="https://niasa.com.mx/productos/adhesivo-pegazulejo/"><img src="img/prod/pegazulejo.webp" alt="Saco de Pegazulejo" loading="lazy" width="253" height="360"></a>
+            <a href="https://niasa.com.mx/productos/fijaporcelanicos-y-porcelanatos/"><img src="img/prod/fijaporcelanicos.webp" alt="Saco de Fijaporcelánicos y Porcelanatos" loading="lazy" width="249" height="360"></a>
           </div>
         </div>
       </div></div>
     </li>
 
     <li class="estrato" id="capa-espreables" style="--tono:#ff6b6b">
-      <div class="estrato__tex"><img src="img/w/t-espreable.webp" alt="" loading="lazy" width="1440" height="617"></div>
-      <button class="estrato__cab" type="button" aria-expanded="false" aria-controls="p-espr">
+      <div class="estrato__tex"><img src="img/w/t-espreable.webp" srcset="img/w/t-espreable-720.webp 720w, img/w/t-espreable.webp 1440w" sizes="100vw" alt="" loading="lazy" width="1440" height="617"></div>
+      <h3 class="estrato__h"><button class="estrato__cab" type="button" aria-expanded="false" aria-controls="p-espr">
         <span class="estrato__num">06</span>
         <span class="estrato__nombre">Adhesivos espreables</span>
         <span class="estrato__donde">Paneles en muros y techos</span>
         <span class="estrato__mas" aria-hidden="true"><svg><use href="#i-mas"/></svg></span>
-      </button>
+      </button></h3>
       <div class="estrato__panel" id="p-espr"><div>
         <div class="estrato__cuerpo">
           <div class="estrato__texto">
@@ -308,23 +328,23 @@
             <a class="enlace" href="https://niasa.com.mx/adhesivos-espreables/">Ver adhesivos espreables <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
           </div>
           <ul class="estrato__prods">
-            <li>ADMASTER® Paneles</li>
+            <li><a href="https://niasa.com.mx/productos/admaster-paneles/">ADMASTER® Paneles</a></li>
           </ul>
           <div class="estrato__packs">
-            <img src="img/prod/admaster-paneles.webp" alt="Lata de ADMASTER Paneles" loading="lazy" width="231" height="360">
+            <a href="https://niasa.com.mx/productos/admaster-paneles/"><img src="img/prod/admaster-paneles.webp" alt="Lata de ADMASTER Paneles" loading="lazy" width="231" height="360"></a>
           </div>
         </div>
       </div></div>
     </li>
 
     <li class="estrato" id="capa-morteros" style="--tono:#b8c4dc">
-      <div class="estrato__tex"><img src="img/w/t-mortero.webp" alt="" loading="lazy" width="1440" height="617"></div>
-      <button class="estrato__cab" type="button" aria-expanded="false" aria-controls="p-mort">
+      <div class="estrato__tex"><img src="img/w/t-mortero.webp" srcset="img/w/t-mortero-720.webp 720w, img/w/t-mortero.webp 1440w" sizes="100vw" alt="" loading="lazy" width="1440" height="617"></div>
+      <h3 class="estrato__h"><button class="estrato__cab" type="button" aria-expanded="false" aria-controls="p-mort">
         <span class="estrato__num">07</span>
         <span class="estrato__nombre">Morteros especializados</span>
         <span class="estrato__donde">Nivelación, anclaje y reparación</span>
         <span class="estrato__mas" aria-hidden="true"><svg><use href="#i-mas"/></svg></span>
-      </button>
+      </button></h3>
       <div class="estrato__panel" id="p-mort"><div>
         <div class="estrato__cuerpo">
           <div class="estrato__texto">
@@ -332,24 +352,24 @@
             <a class="enlace" href="https://niasa.com.mx/morteros-especializados/">Ver morteros especializados <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
           </div>
           <ul class="estrato__prods">
-            <li>Autonivelor®</li><li>SLTK® Grout GE-N</li><li>Epoxybond®</li>
+            <li><a href="https://niasa.com.mx/productos/autonivelor/">Autonivelor®</a></li><li><a href="https://niasa.com.mx/productos/grout-gen/">SLTK® Grout GE-N</a></li><li><a href="https://niasa.com.mx/productos/epoxybond/">Epoxybond®</a></li>
           </ul>
           <div class="estrato__packs">
-            <img src="img/prod/autonivelor.webp" alt="Saco de Autonivelor" loading="lazy" width="244" height="360">
-            <img src="img/prod/sltk-grout-gen.webp" alt="Empaques de SLTK Grout GE-N" loading="lazy" width="415" height="360">
+            <a href="https://niasa.com.mx/productos/autonivelor/"><img src="img/prod/autonivelor.webp" alt="Saco de Autonivelor" loading="lazy" width="244" height="360"></a>
+            <a href="https://niasa.com.mx/productos/grout-gen/"><img src="img/prod/sltk-grout-gen.webp" alt="Empaques de SLTK Grout GE-N" loading="lazy" width="415" height="360"></a>
           </div>
         </div>
       </div></div>
     </li>
 
     <li class="estrato" id="capa-aditivos" style="--tono:#c08bea">
-      <div class="estrato__tex"><img src="img/w/t-aditivo.webp" alt="" loading="lazy" width="1440" height="617"></div>
-      <button class="estrato__cab" type="button" aria-expanded="false" aria-controls="p-adit">
+      <div class="estrato__tex"><img src="img/w/t-aditivo.webp" srcset="img/w/t-aditivo-720.webp 720w, img/w/t-aditivo.webp 1440w" sizes="100vw" alt="" loading="lazy" width="1440" height="617"></div>
+      <h3 class="estrato__h"><button class="estrato__cab" type="button" aria-expanded="false" aria-controls="p-adit">
         <span class="estrato__num">08</span>
         <span class="estrato__nombre">Aditivos</span>
         <span class="estrato__donde">Concretos y morteros · obra negra</span>
         <span class="estrato__mas" aria-hidden="true"><svg><use href="#i-mas"/></svg></span>
-      </button>
+      </button></h3>
       <div class="estrato__panel" id="p-adit"><div>
         <div class="estrato__cuerpo">
           <div class="estrato__texto">
@@ -357,25 +377,25 @@
             <a class="enlace" href="https://niasa.com.mx/aditivos/">Ver aditivos <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
           </div>
           <ul class="estrato__prods">
-            <li>Niasabond®</li><li>Niasacreto Aditech®</li><li>Fraguarapid®</li><li>Membracure®</li><li>Niasagral® Plus</li>
+            <li><a href="https://niasa.com.mx/productos/niasabond/">Niasabond®</a></li><li><a href="https://niasa.com.mx/productos/niasacreto-aditech/">Niasacreto Aditech®</a></li><li><a href="https://niasa.com.mx/productos/fraguarapid/">Fraguarapid®</a></li><li><a href="https://niasa.com.mx/productos/membracure/">Membracure®</a></li><li><a href="https://niasa.com.mx/productos/niasagral-plus/">Niasagral® Plus</a></li>
           </ul>
           <div class="estrato__packs">
-            <img src="img/prod/fraguarapid.webp" alt="Envase de Fraguarapid" loading="lazy" width="258" height="360">
-            <img src="img/prod/niasagral-plus.webp" alt="Saco de Niasagral Plus" loading="lazy" width="249" height="360">
-            <img src="img/prod/niasabond.webp" alt="Envase de Niasabond" loading="lazy" width="251" height="360">
+            <a href="https://niasa.com.mx/productos/fraguarapid/"><img src="img/prod/fraguarapid.webp" alt="Envase de Fraguarapid" loading="lazy" width="258" height="360"></a>
+            <a href="https://niasa.com.mx/productos/niasagral-plus/"><img src="img/prod/niasagral-plus.webp" alt="Saco de Niasagral Plus" loading="lazy" width="249" height="360"></a>
+            <a href="https://niasa.com.mx/productos/niasabond/"><img src="img/prod/niasabond.webp" alt="Envase de Niasabond" loading="lazy" width="251" height="360"></a>
           </div>
         </div>
       </div></div>
     </li>
 
     <li class="estrato" id="capa-especialidades" style="--tono:#f2b84b">
-      <div class="estrato__tex"><img src="img/w/t-sltk.webp" alt="" loading="lazy" width="1440" height="617"></div>
-      <button class="estrato__cab" type="button" aria-expanded="false" aria-controls="p-sltk">
+      <div class="estrato__tex"><img src="img/w/t-sltk.webp" srcset="img/w/t-sltk-720.webp 720w, img/w/t-sltk.webp 1440w" sizes="100vw" alt="" loading="lazy" width="1440" height="617"></div>
+      <h3 class="estrato__h"><button class="estrato__cab" type="button" aria-expanded="false" aria-controls="p-sltk">
         <span class="estrato__num">09</span>
         <span class="estrato__nombre">Especialidades SLTK®</span>
         <span class="estrato__donde">Concreto, cimbra y curado</span>
         <span class="estrato__mas" aria-hidden="true"><svg><use href="#i-mas"/></svg></span>
-      </button>
+      </button></h3>
       <div class="estrato__panel" id="p-sltk"><div>
         <div class="estrato__cuerpo">
           <div class="estrato__texto">
@@ -383,25 +403,25 @@
             <a class="enlace" href="https://niasa.com.mx/especialidades-sltk/">Ver especialidades SLTK® <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
           </div>
           <ul class="estrato__prods">
-            <li>SLTK® Desmol AE</li><li>SLTK® Desmol PF</li><li>SLTK® dur ES-S</li><li>SLTK® Membracril</li><li>SLTK® Grout GE-N</li><li>SLTK® Epoxybond</li><li>SLTK® Microfiber 600</li>
+            <li><a href="https://niasa.com.mx/productos/desmol-ae/">SLTK® Desmol AE</a></li><li><a href="https://niasa.com.mx/productos/desmol-pf/">SLTK® Desmol PF</a></li><li><a href="https://niasa.com.mx/productos/dur-ess/">SLTK® dur ES-S</a></li><li><a href="https://niasa.com.mx/productos/membracril/">SLTK® Membracril</a></li><li><a href="https://niasa.com.mx/productos/grout-gen/">SLTK® Grout GE-N</a></li><li><a href="https://niasa.com.mx/productos/epoxybond/">SLTK® Epoxybond</a></li><li><a href="https://niasa.com.mx/productos/microfiber-600/">SLTK® Microfiber 600</a></li>
           </ul>
           <div class="estrato__packs">
-            <img src="img/prod/sltk-desmol-ae.webp" alt="Cubeta de SLTK Desmol AE" loading="lazy" width="264" height="360">
-            <img src="img/prod/sltk-dur-ess.webp" alt="Cubeta de SLTK dur ES-S" loading="lazy" width="257" height="360">
-            <img src="img/prod/sltk-microfiber-600.webp" alt="Bolsa de SLTK Microfiber 600" loading="lazy" width="236" height="360">
+            <a href="https://niasa.com.mx/productos/desmol-ae/"><img src="img/prod/sltk-desmol-ae.webp" alt="Cubeta de SLTK Desmol AE" loading="lazy" width="264" height="360"></a>
+            <a href="https://niasa.com.mx/productos/dur-ess/"><img src="img/prod/sltk-dur-ess.webp" alt="Cubeta de SLTK dur ES-S" loading="lazy" width="257" height="360"></a>
+            <a href="https://niasa.com.mx/productos/microfiber-600/"><img src="img/prod/sltk-microfiber-600.webp" alt="Bolsa de SLTK Microfiber 600" loading="lazy" width="236" height="360"></a>
           </div>
         </div>
       </div></div>
     </li>
 
     <li class="estrato" id="capa-soudal" style="--tono:#ff8a80">
-      <div class="estrato__tex"><img src="img/w/t-soudal.webp" alt="" loading="lazy" width="1440" height="617"></div>
-      <button class="estrato__cab" type="button" aria-expanded="false" aria-controls="p-soud">
+      <div class="estrato__tex"><img src="img/w/t-soudal.webp" srcset="img/w/t-soudal-720.webp 720w, img/w/t-soudal.webp 1440w" sizes="100vw" alt="" loading="lazy" width="1440" height="617"></div>
+      <h3 class="estrato__h"><button class="estrato__cab" type="button" aria-expanded="false" aria-controls="p-soud">
         <span class="estrato__num">10</span>
         <span class="estrato__nombre">Línea Soudal</span>
         <span class="estrato__donde">Sellado y fijación profesional</span>
         <span class="estrato__mas" aria-hidden="true"><svg><use href="#i-mas"/></svg></span>
-      </button>
+      </button></h3>
       <div class="estrato__panel" id="p-soud"><div>
         <div class="estrato__cuerpo">
           <div class="estrato__texto">
@@ -409,12 +429,12 @@
             <a class="enlace" href="https://niasa.com.mx/linea-soudal/">Ver línea Soudal <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
           </div>
           <ul class="estrato__prods">
-            <li>Multibond MS35</li><li>Soudaflex 33SL</li><li>Fix All High Tack</li>
+            <li><a href="https://niasa.com.mx/productos/multibondms35/">Multibond MS35</a></li><li><a href="https://niasa.com.mx/productos/soudaflex33sl/">Soudaflex 33SL</a></li><li><a href="https://niasa.com.mx/productos/fixallhightack/">Fix All High Tack</a></li>
           </ul>
           <div class="estrato__packs estrato__packs--tubos">
-            <img src="img/prod/soudaflex-33sl.webp" alt="Cartucho de Soudaflex 33SL" loading="lazy" width="52" height="360">
-            <img src="img/prod/fix-all-high-tack.webp" alt="Cartucho de Fix All High Tack" loading="lazy" width="60" height="360">
-            <img src="img/prod/multibond-ms35.webp" alt="Cartucho de Multibond MS35" loading="lazy" width="54" height="360">
+            <a href="https://niasa.com.mx/productos/soudaflex33sl/"><img src="img/prod/soudaflex-33sl.webp" alt="Empaque tipo salchicha de Soudaflex 33SL" loading="lazy" width="52" height="360"></a>
+            <a href="https://niasa.com.mx/productos/fixallhightack/"><img src="img/prod/fix-all-high-tack.webp" alt="Cartucho de Fix All High Tack" loading="lazy" width="60" height="360"></a>
+            <a href="https://niasa.com.mx/productos/multibondms35/"><img src="img/prod/multibond-ms35.webp" alt="Cartucho de Multibond MS35" loading="lazy" width="54" height="360"></a>
           </div>
         </div>
       </div></div>
@@ -431,7 +451,7 @@
   <div class="aplana__pista">
     <div class="aplana__fijo">
       <div class="aplana__foto">
-        <img src="img/w/aplana.webp" alt="Muro de block mitad en obra negra y mitad aplanado y terminado" loading="lazy" width="1600" height="893">
+        <img src="img/w/aplana.webp" srcset="img/w/aplana-800.webp 800w, img/w/aplana.webp 1600w" sizes="(max-width:960px) 100vw, 50vw" alt="Muro de block mitad en obra negra y mitad aplanado y terminado" loading="lazy" width="1600" height="893">
         <img class="aplana__saco" src="img/prod/aplana.webp" alt="Saco de Recubritech A.Plana, mortero 4 en 1" loading="lazy" width="525" height="745">
       </div>
       <div class="aplana__txt">
@@ -444,12 +464,14 @@
           <div class="capa4" style="--i:2" role="listitem"><span class="mono">03</span> Sella</div>
           <div class="capa4" style="--i:3" role="listitem"><span class="mono">04</span> Da acabado final</div>
           <div class="capa4 capa4--uno" aria-hidden="true"><b>Recubritech® A.Plana</b><span class="mono">4 en 1</span></div>
+          <p class="capas4__nota" aria-hidden="true">Un solo producto para cuatro funciones: reduce etapas de obra.</p>
         </div>
         <dl class="ficha">
           <div><dt>Presentación</dt><dd>20 kg</dd></div>
-          <div><dt>Rendimiento aprox.</dt><dd>4 m² por saco</dd></div>
+          <div><dt>Rendimiento según espesor</dt><dd>4 m²/saco</dd></div>
           <div><dt>Espesor</dt><dd>hasta 4 cm</dd></div>
         </dl>
+        <p class="ficha__nota">El rendimiento varía según el sustrato, el desperdicio, el espesor deseado y la habilidad del instalador.</p>
         <div class="aplana__acciones">
           <a class="btn btn--morado" href="https://niasa.com.mx/productos/estuco-para-aplanar/">Descúbrelo <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
           <a class="btn btn--linea" href="https://youtu.be/nRAQqYw_95U" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-play"/></svg> Ver video</a>
@@ -463,24 +485,27 @@
 <section class="distrib" id="distribuidores" aria-labelledby="distrib-t">
   <div class="distrib__grid">
     <div class="distrib__foto">
-      <img src="img/w/distribuidor.webp" alt="Contratista conversando con el encargado de una casa de materiales" loading="lazy" width="1400" height="933">
+      <img src="img/w/distribuidor.webp" srcset="img/w/distribuidor-800.webp 800w, img/w/distribuidor.webp 1400w" sizes="(max-width:900px) 100vw, 52vw" alt="Contratista conversando con el encargado de una casa de materiales" loading="lazy" width="1400" height="933">
       <p class="distrib__pin"><svg aria-hidden="true"><use href="#i-pin"/></svg> <span><b>+500</b> distribuidores en México</span></p>
     </div>
     <div class="distrib__txt">
       <p class="mono">¿Te interesa comprar nuestros productos?</p>
       <h2 id="distrib-t">Encuentra un distribuidor cerca de tu obra.</h2>
-      <p>Los productos Niasa se venden a través de una gran red de más de 500 distribuidores en México. Busca por código postal o elige tu estado.</p>
-      <form class="buscador" id="form-distrib" action="https://niasa.com.mx/distribuidores-niasa/" method="get">
+      <p>Los productos Niasa se venden a través de una gran red de más de 500 distribuidores en México. Escribe el código postal de tu obra o elige tu estado y te llevamos al mapa con los distribuidores de la zona.</p>
+      <form class="buscador" id="form-distrib" action="https://niasa.com.mx/distribuidores-niasa/" method="get" novalidate>
+        <input type="hidden" name="jsf" value="jet-engine-maps">
         <div class="buscador__fila">
-          <label class="sr-only" for="d-cp">Código postal</label>
-          <input class="campo" id="d-cp" name="codigo_postal" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" placeholder="Código postal" autocomplete="postal-code">
-          <label class="sr-only" for="d-estado">Estado</label>
-          <select class="campo" id="d-estado" name="ubicacion">
-            <option value="">Estado</option>
-            <option>Aguascalientes</option><option>Baja California</option><option>Baja California Sur</option><option>CDMX</option><option>Chiapas</option><option>Chihuahua</option><option>Coahuila</option><option>Colima</option><option>Durango</option><option>Estado de México</option><option value="Pachuca">Hidalgo</option><option>Jalisco</option><option>Michoacán</option><option>Morelos</option><option>Nayarit</option><option>Nuevo León</option><option>Oaxaca</option><option>Puebla</option><option>Querétaro</option><option>San Luis Potosi</option><option>Sinaloa</option><option>Sonora</option><option>Tabasco</option><option>Tlaxcala</option><option>Veracruz</option><option>Zacatecas</option><option value="Texas">Texas (EUA)</option>
-          </select>
+          <label class="buscador__campo" for="d-cp">Código postal
+            <input class="campo" id="d-cp" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" placeholder="Ej. 44100" autocomplete="postal-code" aria-describedby="d-msg">
+          </label>
+          <label class="buscador__campo" for="d-estado">Estado
+            <select class="campo" id="d-estado" name="tax" aria-describedby="d-msg">
+              <option value="">Elige tu estado</option><option value="ubicacion:258">Aguascalientes</option><option value="ubicacion:176">Baja California</option><option value="ubicacion:324">Baja California Sur</option><option value="ubicacion:295">Ciudad de México</option><option value="ubicacion:287">Chiapas</option><option value="ubicacion:184">Chihuahua</option><option value="ubicacion:322">Coahuila</option><option value="ubicacion:207">Colima</option><option value="ubicacion:196">Durango</option><option value="ubicacion:299">Estado de México</option><option value="ubicacion:326">Hidalgo</option><option value="ubicacion:212">Jalisco</option><option value="ubicacion:249">Michoacán</option><option value="ubicacion:312">Morelos</option><option value="ubicacion:209">Nayarit</option><option value="ubicacion:205">Nuevo León</option><option value="ubicacion:273">Oaxaca</option><option value="ubicacion:303">Puebla</option><option value="ubicacion:323">Querétaro</option><option value="ubicacion:327">San Luis Potosí</option><option value="ubicacion:259">Sinaloa</option><option value="ubicacion:174">Sonora</option><option value="ubicacion:283">Tabasco</option><option value="ubicacion:325">Tlaxcala</option><option value="ubicacion:280">Veracruz</option><option value="ubicacion:217">Zacatecas</option><option value="ubicacion:328">Texas (EUA)</option>
+            </select>
+          </label>
         </div>
-        <button class="btn btn--azul" type="submit">Buscar distribuidor cercano <svg aria-hidden="true"><use href="#i-flecha"/></svg></button>
+        <p class="buscador__msg" id="d-msg" aria-live="polite"></p>
+        <button class="btn btn--azul" type="submit">Ver distribuidores en el mapa <svg aria-hidden="true"><use href="#i-flecha"/></svg></button>
       </form>
       <p class="distrib__nota">¿Quieres distribuir Niasa? <a href="https://niasa.com.mx/distribuidores-niasa/">Forma parte de nuestra red</a>.</p>
     </div>
@@ -514,13 +539,16 @@
           <span class="servicio__n">02</span>
           <h3>Muestra en tu obra</h3>
           <p>Vamos a tu obra a realizar una muestra o demostración personalizada de nuestros productos.</p>
-          <div class="acc"><button class="btn btn--blanco" type="button" data-abre="dlg-muestra">Solicitar una muestra <svg aria-hidden="true"><use href="#i-flecha"/></svg></button></div>
+          <div class="acc"><button class="btn btn--blanco" type="button" data-abre="dlg-muestra" data-solucion="Demostración de producto en tu obra">Solicitar una muestra <svg aria-hidden="true"><use href="#i-flecha"/></svg></button></div>
         </li>
         <li class="servicio">
           <span class="servicio__n">03</span>
           <h3>Capacitación especializada</h3>
-          <p>Capacitación para tu equipo y certificación de instaladores de recubrimientos cerámicos y porcelánicos en el CEN, el Centro de Excelencia Niasa.</p>
-          <div class="acc"><a class="enlace" href="https://niasa.com.mx/cen/">Conoce el CEN <svg aria-hidden="true"><use href="#i-flecha"/></svg></a></div>
+          <p>Capacitación especializada para tu equipo, directamente en tu obra. En Culiacán, además, certificamos instaladores de recubrimientos cerámicos y porcelánicos en el CEN, Centro de Excelencia Niasa.</p>
+          <div class="acc">
+            <button class="btn btn--blanco" type="button" data-abre="dlg-muestra" data-solucion="Capacitación especializada en tu obra">Solicitar capacitación <svg aria-hidden="true"><use href="#i-flecha"/></svg></button>
+            <a class="enlace" href="https://niasa.com.mx/cen/">Conoce el CEN <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
+          </div>
         </li>
       </ol>
     </div>
@@ -549,9 +577,10 @@
         <div class="calc__res" aria-live="polite">
           <span class="calc__num" id="c-sacos">13</span>
           <span class="calc__unidad" id="c-unidad">sacos de 20 kg</span>
-          <p class="calc__nota" id="c-nota">Para piezas de 60 × 60 cm se estima un rendimiento de 2 m² por saco.</p>
+          <p class="calc__nota" id="c-nota">Cálculo para piezas de 60 × 60 cm con la fórmula de la calculadora Niasa.</p>
         </div>
-        <p class="calc__legal">Misma fórmula que la calculadora de Niasa para Pegazulejo, Pegavitro® y Polimor®. El rendimiento real varía según la mano de obra, la rugosidad y el desnivel de la superficie.</p>
+        <a class="btn btn--blanco calc__cta" href="#distribuidores">Ver dónde comprarlos <svg aria-hidden="true"><use href="#i-flecha"/></svg></a>
+        <p class="calc__legal">Misma fórmula que la calculadora de Niasa para Pegazulejo, Pegavitro® y Polimor®. Rendimiento típico de Pegazulejo y Pegavitro®: de 1.80 a 2.20 m² por bulto de 20 kg; varía según la mano de obra, la rugosidad y el desnivel de la superficie.</p>
       </form>
       <div class="ayudas">
         <a class="ayuda" href="https://niasa.com.mx/calculadora-de-adhesivos/">
@@ -580,7 +609,7 @@
 <!-- ================= HECHO EN MÉXICO ================= -->
 <section class="mx osc" id="hecho-en-mexico" aria-labelledby="mx-t">
   <div class="mx__foto">
-    <img src="img/w/planta.webp" alt="Línea de producción de morteros en polvo en una planta industrial" loading="lazy" width="2200" height="1228">
+    <img src="img/w/planta.webp" srcset="img/w/planta-1100.webp 1100w, img/w/planta.webp 2200w" sizes="100vw" alt="Línea de producción de morteros en polvo en una planta industrial" loading="lazy" width="2200" height="1228">
   </div>
   <div class="wrap mx__in">
     <div class="mx__txt">
@@ -648,7 +677,7 @@
       </li>
     </ol>
     <div class="blog__pie"><a class="btn btn--linea" href="https://niasa.com.mx/blog-niasa/">Ver blog Niasa <svg aria-hidden="true"><use href="#i-flecha"/></svg></a></div>
-    <div class="blog__prev" id="blog-prev" aria-hidden="true"><img alt="" src="img/w/blog-1.webp"></div>
+    <div class="blog__prev" id="blog-prev" aria-hidden="true"><img alt="" src="img/w/blog-1.webp" loading="lazy"></div>
   </div>
 </section>
 
@@ -660,7 +689,7 @@
       <h2 id="contacto-t">Contáctanos.</h2>
       <ul class="datos">
         <li><svg aria-hidden="true"><use href="#i-tel"/></svg><div><a href="tel:+525553545680">55 5354 5680</a> · <a href="tel:+528005064272">800 5064 272</a></div></li>
-        <li><svg aria-hidden="true"><use href="#i-wa"/></svg><div><a href="https://wa.me/5215519951277" target="_blank" rel="noopener">Envíanos un WhatsApp</a></div></li>
+        <li><svg aria-hidden="true"><use href="#i-wa"/></svg><div><a href="https://wa.me/5215519951277?text=Hola%20Niasa%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20productos" target="_blank" rel="noopener">Envíanos un WhatsApp</a></div></li>
         <li><svg aria-hidden="true"><use href="#i-mail"/></svg><div><a href="mailto:mercadotecnia@niasa.com.mx">mercadotecnia@niasa.com.mx</a></div></li>
         <li><svg aria-hidden="true"><use href="#i-pin"/></svg><div>General Mariano Escobedo #510, 5to piso, col. Nueva Anzures, Alcaldía Miguel Hidalgo, CP 11590, CDMX</div></li>
         <li><svg aria-hidden="true"><use href="#i-reloj"/></svg><div>Lunes a viernes, 8:00 a 18:00 h</div></li>
@@ -678,14 +707,19 @@
     </div>
     <form class="form" id="form-contacto" novalidate>
       <div class="form__grid">
-        <label>Nombre<input class="campo" name="nombre" autocomplete="name" required></label>
-        <label>Correo<input class="campo" name="correo" type="email" autocomplete="email" required></label>
-        <label>Teléfono<input class="campo" name="telefono" type="tel" autocomplete="tel" required></label>
-        <label>Estado<input class="campo" name="estado" autocomplete="address-level1" required></label>
-        <label>Ciudad<input class="campo" name="ciudad" autocomplete="address-level2" required></label>
-        <label>Asunto<input class="campo" name="asunto" required></label>
-        <label class="form__full">Mensaje<textarea class="campo" name="mensaje" rows="4"></textarea></label>
+        <label>Nombre <span class="req" aria-hidden="true">*</span><input class="campo" name="nombre" autocomplete="name" required></label>
+        <label>Correo <span class="req" aria-hidden="true">*</span><input class="campo" name="correo" type="email" autocomplete="email" required></label>
+        <label>Teléfono <span class="req" aria-hidden="true">*</span><input class="campo" name="telefono" type="tel" autocomplete="tel" required></label>
+        <label>Estado <span class="req" aria-hidden="true">*</span><input class="campo" name="estado" autocomplete="address-level1" required></label>
+        <label>Ciudad <span class="opc">(opcional)</span><input class="campo" name="ciudad" autocomplete="address-level2"></label>
+        <label>Asunto <span class="req" aria-hidden="true">*</span>
+          <select class="campo" name="asunto" required>
+            <option value="">Selecciona</option><option>Quiero comprar</option><option>Duda técnica de un producto</option><option>Quiero ser distribuidor</option><option>Muestra o capacitación en obra</option><option>Otro</option>
+          </select>
+        </label>
+        <label class="form__full">Mensaje <span class="opc">(opcional)</span><textarea class="campo" name="mensaje" rows="4"></textarea></label>
       </div>
+      <p class="form__nota"><span aria-hidden="true">*</span> Campos obligatorios</p>
       <label class="check"><input type="checkbox" name="privacidad" required> <span>Acepto el <a href="https://niasa.com.mx/aviso-de-privacidad">aviso de privacidad</a>.</span></label>
       <p class="error" id="f-error" role="alert"></p>
       <button class="btn btn--azul" type="submit">Enviar mensaje <svg aria-hidden="true"><use href="#i-flecha"/></svg></button>
@@ -749,7 +783,7 @@
   </div>
 </footer>
 
-<a class="wa" href="https://wa.me/5215519951277" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
+<a class="wa" href="https://wa.me/5215519951277?text=Hola%20Niasa%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20productos" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
 
 <!-- ================= DIÁLOGO MUESTRA EN OBRA ================= -->
 <dialog class="dlg" id="dlg-muestra" aria-labelledby="dlg-t">
@@ -757,36 +791,37 @@
     <button class="dlg__cerrar" type="button" data-cierra aria-label="Cerrar"><svg aria-hidden="true"><use href="#i-mas"/></svg></button>
     <p class="mono">Potencia tus proyectos con Niasa</p>
     <h2 id="dlg-t">Solicita una muestra en tu obra</h2>
-    <p class="dlg__lead">Si eres arquitecto, contratista, constructora o desarrolladora, agenda una especificación, una demostración personalizada o una capacitación con nuestro equipo de expertos.</p>
+    <p class="dlg__lead">Arquitectos, contratistas, constructoras, desarrolladoras y maestros de obra: agenda una especificación, una demostración personalizada o una capacitación con nuestro equipo de expertos.</p>
     <div class="form__grid">
-      <label>Nombre<input class="campo" name="nombre" autocomplete="name" required></label>
-      <label>Correo<input class="campo" name="correo" type="email" autocomplete="email" required></label>
-      <label>Teléfono<input class="campo" name="telefono" type="tel" autocomplete="tel" required></label>
-      <label>Estado o ciudad
+      <label>Nombre <span class="req" aria-hidden="true">*</span><input class="campo" name="nombre" autocomplete="name" required></label>
+      <label>Correo <span class="req" aria-hidden="true">*</span><input class="campo" name="correo" type="email" autocomplete="email" required></label>
+      <label>Teléfono <span class="req" aria-hidden="true">*</span><input class="campo" name="telefono" type="tel" autocomplete="tel" required></label>
+      <label>Estado <span class="req" aria-hidden="true">*</span>
         <select class="campo" name="estado" required>
-          <option value="">Selecciona</option>
-          <option>Aguascalientes</option><option>Baja California Norte</option><option>Caborca</option><option>CDMX</option><option>Chiapas</option><option>Chihuahua</option><option>Culiacán</option><option>Estado de México</option><option>Guadalajara</option><option>Guerrero</option><option>Hermosillo</option><option>Hidalgo</option><option>Juárez</option><option>La Paz</option><option>León</option><option>Los Cabos</option><option>Mazatlán</option><option>Monterrey</option><option>Morelos</option><option>Oaxaca</option><option>Peñasco</option><option>Puebla</option><option>Puerto Vallarta</option><option>Querétaro</option><option>Río Colorado</option><option>San Luis</option><option>Torreón</option><option>Veracruz</option>
+          <option value="">Selecciona</option><option>Aguascalientes</option><option>Baja California</option><option>Baja California Sur</option><option>Campeche</option><option>Chiapas</option><option>Chihuahua</option><option>Ciudad de México</option><option>Coahuila</option><option>Colima</option><option>Durango</option><option>Estado de México</option><option>Guanajuato</option><option>Guerrero</option><option>Hidalgo</option><option>Jalisco</option><option>Michoacán</option><option>Morelos</option><option>Nayarit</option><option>Nuevo León</option><option>Oaxaca</option><option>Puebla</option><option>Querétaro</option><option>Quintana Roo</option><option>San Luis Potosí</option><option>Sinaloa</option><option>Sonora</option><option>Tabasco</option><option>Tamaulipas</option><option>Tlaxcala</option><option>Veracruz</option><option>Yucatán</option><option>Zacatecas</option><option>Fuera de México</option>
         </select>
       </label>
-      <label>Especialidad
+      <label>Ciudad <span class="opc">(opcional)</span><input class="campo" name="ciudad" autocomplete="address-level2"></label>
+      <label>Especialidad <span class="req" aria-hidden="true">*</span>
         <select class="campo" name="especialidad" required>
-          <option value="">Selecciona</option><option>Arquitecto</option><option>Contratista</option><option>Constructora</option><option>Desarrolladora</option>
+          <option value="">Selecciona</option><option>Arquitecto</option><option>Contratista</option><option>Constructora</option><option>Desarrolladora</option><option>Maestro de obra / instalador</option><option>Distribuidor / ferretería</option><option>Otro</option>
         </select>
       </label>
-      <label>¿Qué solución te interesa?
+      <label class="form__full">¿Qué solución te interesa? <span class="req" aria-hidden="true">*</span>
         <select class="campo" name="solucion" required>
           <option value="">Selecciona</option><option>Especificación en tu obra</option><option>Demostración de producto en tu obra</option><option>Capacitación especializada en tu obra</option>
         </select>
       </label>
-      <label class="form__full">¿Qué productos te interesan?
+      <label class="form__full">¿Qué productos te interesan? <span class="req" aria-hidden="true">*</span>
         <select class="campo" name="productos" required>
           <option value="">Selecciona</option><option>Adhesivos convencionales</option><option>Adhesivos modificados</option><option>Emboquilladores</option><option>Aditivos</option><option>Estucos</option><option>Basecoat</option><option>Morteros especializados</option><option>Impermeabilizantes</option><option>Selladores</option><option>Adhesivos espreables</option><option>Especialidades</option><option>Soudal</option>
         </select>
       </label>
     </div>
+    <p class="form__nota"><span aria-hidden="true">*</span> Campos obligatorios</p>
     <label class="check"><input type="checkbox" name="privacidad" required> <span>Acepto el <a href="https://niasa.com.mx/aviso-de-privacidad">aviso de privacidad</a>.</span></label>
     <p class="error" id="m-error" role="alert"></p>
-    <button class="btn btn--azul" type="submit">Regístrate <svg aria-hidden="true"><use href="#i-flecha"/></svg></button>
+    <button class="btn btn--azul" type="submit">Solicitar visita a mi obra <svg aria-hidden="true"><use href="#i-flecha"/></svg></button>
   </form>
 </dialog>
 
