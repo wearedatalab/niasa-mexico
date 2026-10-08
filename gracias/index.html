@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>¡Gracias! | Niasa México</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0b1530">
+<link rel="icon" href="../img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/niasa.css">
+<style>
+  .gracias{min-height:100svh;display:grid;align-content:center;gap:28px;padding:calc(var(--header-h) + 40px) var(--gutter) 64px;max-width:900px}
+  .gracias .mono{color:#a9b6d3;display:flex;gap:12px;align-items:center}
+  .gracias .mono::before{content:"";width:28px;height:2px;background:var(--azul-claro)}
+  .gracias h1{font-size:clamp(48px,8vw,104px);line-height:.92;color:#fff;font-variation-settings:"wdth" 125;font-stretch:125%}
+  .gracias p.lead{font-size:clamp(18px,1.5vw,21px);color:#c4cde2;max-width:46ch}
+  .gracias .acc{display:flex;flex-wrap:wrap;gap:12px}
+  .gracias .peine{height:18px;width:min(320px,70%);background:repeating-linear-gradient(90deg,var(--azul-claro) 0 9px,transparent 9px 18px);opacity:.8}
+</style>
+</head>
+<body class="osc">
+<header class="header is-solid">
+  <div class="header__in">
+    <a class="logo" href="../"><img src="../img/w/logo-niasa.webp" alt="Niasa · Entre tú y tu obra" width="640" height="185"></a>
+  </div>
+</header>
+<main class="gracias">
+  <div class="peine" aria-hidden="true"></div>
+  <p class="mono" id="g-origen">Mensaje recibido</p>
+  <h1 id="g-titulo">¡Gracias!</h1>
+  <p class="lead" id="g-texto">Recibimos tu mensaje. Un asesor de Niasa se pondrá en contacto contigo muy pronto.</p>
+  <div class="acc">
+    <a class="btn btn--blanco" href="../">Volver al inicio</a>
+    <a class="btn btn--linea" href="https://niasa.com.mx/productos/">Ver productos</a>
+  </div>
+</main>
+<script>
+(function () {
+  var f = new URLSearchParams(location.search).get("f") || "contacto";
+  var T = {
+    contacto: ["Mensaje recibido", "¡Gracias!", "Recibimos tu mensaje. Un asesor de Niasa se pondrá en contacto contigo muy pronto. Horario de atención: lunes a viernes de 8:00 a 18:00 h."],
+    boletin: ["Boletín Niasa", "¡Ya estás dentro!", "Gracias por suscribirte. Pronto recibirás las últimas noticias, lanzamientos y tips de Niasa en tu correo."],
+    muestra: ["Muestra en tu obra", "¡Solicitud recibida!", "Gracias por tu interés. Nuestro equipo te contactará para agendar la especificación, demostración o capacitación en tu obra."]
+  }[f] || null;
+  if (T) {
+    document.getElementById("g-origen").textContent = T[0];
+    document.getElementById("g-titulo").textContent = T[1];
+    document.getElementById("g-texto").textContent = T[2];
+  }
+  // Conversión: se dispara una sola vez por sesión
+  try {
+    var k = "niasa_lead_" + f;
+    if (!sessionStorage.getItem(k)) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: "generate_lead", form_origin: f });
+      sessionStorage.setItem(k, "1");
+    }
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>

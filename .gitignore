@@ -1,0 +1,5 @@
+# fuentes y utilidades locales (no se publican)
+_*.py
+__pycache__/
+img/gen/
+img/orig/
